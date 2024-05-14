@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import mx.itson.hellocheems.persistence.CheemsDB
 
-class Location {
+class Visit {
     var id = 0
     var name : String? = null
     var reason : String? = null
@@ -23,15 +23,15 @@ class Location {
         this.longitude = longitude
 
 }
-fun get(context: Context) : List<Location>{
-    val contacts:MutableList<Location> = ArrayList()
+fun get(context: Context) : List<Visit>{
+    val contacts:MutableList<Visit> = ArrayList()
     try {
         val cheemsDB = CheemsDB (context, "CheemsDB", null, 1)
         val database: SQLiteDatabase = cheemsDB.writableDatabase
 
         val cursor = database.rawQuery("SELECT id, name, reason, responsible, latitude, longitude FROM Location",null)
         while (cursor.moveToNext()){
-            val contact = Location(cursor.getInt(0),
+            val contact = Visit(cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3),
